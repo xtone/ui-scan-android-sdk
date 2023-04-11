@@ -38,6 +38,13 @@
           }
         },
         {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.6.4"
+          }
+        },
+        {
           "group": "com.slack.eithernet",
           "module": "eithernet",
           "version": {
@@ -92,6 +99,13 @@
           "module": "converter-gson",
           "version": {
             "requires": "2.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.6.4"
           }
         },
         {
