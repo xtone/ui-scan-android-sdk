@@ -31,13 +31,13 @@ allprojects {
 
 ```Groovy
 dependencies {
-	implementation 'com.xtone.android:AndroidAutoScreenShot:0.0.6' //New
+	implementation 'com.xtone.android:AndroidAutoScreenShot:0.1.0' //New
 }　
 ```
 
 ## Usage
 
-### XML
+### For XML
 Basically, it is written at the end of `onCreate()` of Activity or `onViewCreated()` of Fragment.
 
 The following is a description of each method at the time of instance creation.
@@ -76,9 +76,13 @@ Select the corresponding method from the following five methods according to the
 
 - `captureStartScrollView()`
 - `captureStartNestedScrollView()`
-- `captureStartRecyclerView()`
+- `captureStartRecyclerView()` ※1
 - `captureStartListView()`
-- `captureStartWebView()`
+- `captureStartWebView()` ※2
+
+※1 Call captureStartRecyclerView() for a configuration screen using the `Preferences` framework.
+
+※2 Call captureStartWebView() at `webViewClient.onPageFinished()`.
 
 For example, the following is a case of a screen with a scrolling ScrollView.
 
@@ -91,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //create and initialize an instance
+        //create an instance and initialize
         val auto = AutoCapture.Builder(activity)
             .apiKey("your api key")
             .projectId("your project id")
@@ -117,15 +121,13 @@ argument name     | description |
 -----------| ------------ |
 | ○○○Id | Specify the id of the View element to be scrolled. |
 | appBarLayoutId | Specify the id of the AppBarLayout element only if an interlocking toolbar exists. If not specified, 0 is used. |
-| outerTopOffset | specifies the height in `dp` of the fixed UI portion that exists above the scrolling View element. If not specified, the sum of your terminal's status bar and default ToolBar (ActionBar) height will be used. |
+| outerTopOffset | Specify the height in `dp` of the fixed UI portion that exists above the scrolling View element. If not specified, the sum of your terminal's status bar and default ToolBar (ActionBar) height will be used. |
 | outerBottomOffset | The height, in `dp`, of the fixed UI portion below the scrolling View element. If not specified, 0 is used. |
 | innerTopOffset | If a fixed element exists inside the scrolling View element, specify the height in `dp` of the fixed UI portion that extends beyond the upper fixed UI portion. If not specified, the default shade (4dp) specified by default for the default ToolBar (ActionBar) will be used. |
-| innerBottomOffset | If there is a fixed element inside the View element to be scrolled, specify the height in `dp` that extends beyond the fixed UI portion below. If not specified, 0 is used. |
+| innerBottomOffset | If there is a fixed element inside the View element to be scrolled, specify the height in `dp` that extends beyond the fixed UI portion below. If not specified, 0 is used.If BottomNavigationView is used for the fixed UI at the bottom of the screen, innerBottomOffset should be 4dp of the default shade value specified for BottomNavigationView. |
 
-### Compose
+### For Compose
 #### no scroll
-
-This is described in the route's Composable function.
 
 ```kotlin
 import com.xtone.android.autoscreenshot.AutoCaptureCompose
@@ -133,9 +135,9 @@ import com.xtone.android.autoscreenshot.AutoCaptureCompose
 @Composable
 fun YourRootComposable() {
 
-    //create and initialize an instance
+    //create an instance and initialize
     val activity = LocalContext.current as Activity
-    val auto = remember{
+    val auto = remember {
         AutoCaptureCompose.Builder(activity)
             .apiKey("your api key")
             .projectId("your project id")
@@ -146,9 +148,8 @@ fun YourRootComposable() {
     //execute screenshot
     auto.captureStart()
 
-
     Box(contentAlignment = Alignment.Center) {
-        Button(onClick = { }) {
+        Button {
             Text(text = "BUTTON")
         }
     }
@@ -156,7 +157,15 @@ fun YourRootComposable() {
 ```
 #### with scroll
 
-The description for LazyColumn is placed in the Composable function.
+Depending on the Composable element to be scrolled, select the corresponding Modifier function from the following three.
+
+`TakeScreenShotWithVerticalScroll()` is used when vertical scrolling is caused by the Modifier function `verticalScroll()`.
+
+- `takeScreenShotWithLazyColumn()`
+- `takeScreenShotWithLazyVerticalGrid()`
+- `takeScreenShotWithVerticalScroll()`
+
+For example, the following is a case of a screen with a scrolling LazyColumn.
 
 ```kotlin
 import com.xtone.android.autoscreenshot.AutoCaptureCompose
@@ -167,8 +176,8 @@ fun YourLazyColumnComposable() {
     val activity = LocalContext.current as Activity
     val scrollState = rememberLazyListState()
 
-    //create and initialize an instance
-    val auto = remember{
+    //create an instance and initialize
+    val auto = remember {
         AutoCaptureCompose.Builder(activity)
             .apiKey("your api key")
             .projectId("your project id")
@@ -176,23 +185,31 @@ fun YourLazyColumnComposable() {
             .build()
     }
 
-    //execute screenshot
-    auto.captureStartLazyColumn(
-        scrollState =  scrollState,
-        outerTopOffset = 100,
-        outerBottomOffset = 100,
-        innerTopOffset = 10,
-        innerBottomOffset = 50
-    )
-
-    LazyColumn(
-        state = scrollState,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        item {
-            ...
-        }
-    }
+    Scaffold(
+        topBar = {
+            TopAppBar()
+        },
+        content = { innerPadding ->
+            Box(modifier = Modifier.padding(innerPadding)) {
+                LazyColumn(
+                    state = scrollState,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .takeScreenShotWithLazyColumn( //execute screenshot
+                            auto = auto,
+                            lazyListState = scrollState,
+                            outerTopOffset = 100,
+                            outerBottomOffset = 100,
+                            innerTopOffset = 10,
+                            innerBottomOffset = 50
+                        )
+                ) {
+                    item {
+                        ...
+                    }
+                }
+            }
+        })
 }
 ```
 
@@ -203,26 +220,80 @@ you can use `captureStart()` in both XML and Compose versions.
 #### with scroll
 select one of the two libraries depending on whether the element performing the scrolling itself is a View or a Compose.
 
+(1) If the scrolling UI element is in a Compose in an existing View
+
+```kotlin
+val composeView = ComposeView(this).apply {
+    setContent {
+        //create an instance and initialize
+        ...
+
+        LazyColumn(
+            state = scrollState,
+            modifier = Modifier
+                .fillMaxSize()
+                .takeScreenShotWithLazyColumn( //execute screenshot
+                    auto = auto,
+                    lazyListState = scrollState
+                )
+        ) {
+            item {
+               ...
+            }
+        }
+
+    }
+}
+```
+
+(2) When a scrolling UI element is placed in an existing View in a Composable function
+
+```kotlin
+val activity = LocalContext.current as Activity
+AndroidView(
+    factory = { context ->
+        val scrollView = ScrollView(context)
+        scrollView.id = View.generateViewId() //If View id is missing, please generate it
+
+        //create an instance and initialize
+        ...
+
+        //execute screenshot
+        auto.captureStartScrollView(scrollViewId = scrollView.id)
+
+        scrollView
+    }
+)
+```
+
 ## Unsupported Screen Patterns
+The following patterns are not consistent with the basic design of the library and are not planned to be supported.
+
 - Map
 - Dialog alone
 - Entire screen scrolled horizontally
-- Screen where the fixed UI section at the bottom is hidden from view or reduced in size when scrolling
+- WebView(Compose version)
+
+## known issue
+Screenshots cannot be obtained in the following cases:
+
+### Both 
+- Screen where the fixed UI section at the bottom is hidden from view or reduced in size when scrolling(https://github.com/xtone/AndroidAutoScreenShot/issues/1)
 
 ### XML
-- Entire screen with `GridView` scrolled vertically
-- Entire screen scrolled vertically by combining RecyclerView and `GridLayoutManager` or `StaggeredGridLayoutManager`
-- Entire screen with multiple RecyclerViews and ListViews in the screen, each scrolling vertically
-- Screen where ads exist at the bottom of WebView
+- Entire screen with `GridView` scrolled vertically(https://github.com/xtone/AndroidAutoScreenShot/issues/2)
+- Entire screen scrolled vertically by combining RecyclerView and `GridLayoutManager` or `StaggeredGridLayoutManager`(https://github.com/xtone/AndroidAutoScreenShot/issues/3)
+- Entire screen with multiple RecyclerViews and ListViews in the screen, each scrolling vertically(https://github.com/xtone/AndroidAutoScreenShot/issues/4)
+- Screen where ads exist at the bottom of WebView(https://github.com/xtone/AndroidAutoScreenShot/issues/5)
+
+### Compose
+- Screens that specify paddingTop or paddingBottom in the layout itself(https://github.com/xtone/AndroidAutoScreenShot/issues/6)
+- Screens where the layout is directly below in the content property of the Scaffold function(https://github.com/xtone/AndroidAutoScreenShot/issues/7)
+- Screen with Arrangement.spacedBy() specified for layout(https://github.com/xtone/AndroidAutoScreenShot/issues/8)
 
 ## Notes
 - Make sure to tap the button on the dialog after all screen drawing is complete.
 - Do not run the library at the same time.
 - Specify appropriate argument values for each method.
-
-### XML
-- Run the library on the appropriate Activity or Fragment.
-- Call the method of the library corresponding to the corresponding View(For example, if you have a RecyclerView or ListView within a NestedScrollView, call the method for the NestedScrollView, which is the main source of scrolling).
-- captureStartWebView() is a
-`webViewClient.onPageFinished()`.
-- Call captureStartRecyclerView() for a configuration screen using the `Preferences` framework.
+- Run the library on the appropriate appropriate file location.
+- Call the method of the library corresponding to the corresponding View or Composable.
