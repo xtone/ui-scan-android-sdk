@@ -145,8 +145,10 @@ fun YourRootComposable() {
             .build()
     }
 
-    //execute screenshot
-    auto.captureStart()
+    LaunchedEffect(Unit) {
+        //execute screenshot
+        auto.captureStart()
+    }
 
     Box(contentAlignment = Alignment.Center) {
         Button {
@@ -279,6 +281,8 @@ Screenshots cannot be obtained in the following cases:
 
 ### Both 
 - Screen where the fixed UI section at the bottom is hidden from view or reduced in size when scrolling(https://github.com/xtone/AndroidAutoScreenShot/issues/1)
+- Upward scrolling vertical screen like a chat application(https://github.com/xtone/AndroidAutoScreenShot/issues/9)
+- Screen with a collapsible toolbar created in Compose and wrapped in an `AppBarLayout` element(https://github.com/xtone/AndroidAutoScreenShot/issues/10)
 
 ### XML
 - Entire screen with `GridView` scrolled vertically(https://github.com/xtone/AndroidAutoScreenShot/issues/2)
@@ -295,5 +299,5 @@ Screenshots cannot be obtained in the following cases:
 - Make sure to tap the button on the dialog after all screen drawing is complete.
 - Do not run the library at the same time.
 - Specify appropriate argument values for each method.
-- Run the library on the appropriate appropriate file location.
+- Write in the appropriate file location to run the library in the state of the UI of the screen you want to take a screenshot of.
 - Call the method of the library corresponding to the corresponding View or Composable.
