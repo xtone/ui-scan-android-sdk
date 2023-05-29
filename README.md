@@ -300,4 +300,8 @@ Screenshots cannot be obtained in the following cases:
 - Do not run the library at the same time.
 - Specify appropriate argument values for each method.
 - Write in the appropriate file location to run the library in the state of the UI of the screen you want to take a screenshot of.
+<<<<<<< HEAD
 - Call the method of the library corresponding to the corresponding View or Composable.
+=======
+- Call the method of the library corresponding to the corresponding View or Composable.
+>>>>>>> f37653f53074ca1b2aef872ba589ac154b7bb71a
