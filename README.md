@@ -123,7 +123,7 @@ argument name     | description |
 | appBarLayoutId | Specify the id of the AppBarLayout element only if an interlocking toolbar exists. If not specified, 0 is used. |
 | outerTopOffset | Specify the height in `dp` of the fixed UI portion that exists above the scrolling View element. If not specified, the sum of your terminal's status bar and default ToolBar (ActionBar) height will be used. |
 | outerBottomOffset | The height, in `dp`, of the fixed UI portion below the scrolling View element. If not specified, 0 is used. |
-| innerTopOffset | If a fixed element exists inside the scrolling View element, specify the height in `dp` of the fixed UI portion that extends beyond the upper fixed UI portion. If not specified, the default shade (4dp) specified by default for the default ToolBar (ActionBar) will be used. |
+| innerTopOffset | If a fixed element exists inside the scrolling View element, specify the height in `dp` of the fixed UI portion that extends beyond the upper fixed UI portion. If not specified, the default shade (4dp) specified by default for the default ToolBar (ActionBar) will be used.If there is no toolbar (action bar) and the status bar overlaps the scroll area, set outerBottomOffset to 0 and enter the height of the status bar in innerTopOffset. |
 | innerBottomOffset | If there is a fixed element inside the View element to be scrolled, specify the height in `dp` that extends beyond the fixed UI portion below. If not specified, 0 is used.If BottomNavigationView is used for the fixed UI at the bottom of the screen, innerBottomOffset should be 4dp of the default shade value specified for BottomNavigationView. |
 
 ### For Compose
@@ -272,7 +272,7 @@ AndroidView(
 The following patterns are not consistent with the basic design of the library and are not planned to be supported.
 
 - Map
-- Dialog alone
+- Screens containing dialogs
 - Entire screen scrolled horizontally
 - WebView(Compose version)
 
@@ -289,6 +289,7 @@ Screenshots cannot be obtained in the following cases:
 - Entire screen scrolled vertically by combining RecyclerView and `GridLayoutManager` or `StaggeredGridLayoutManager`(https://github.com/xtone/AndroidAutoScreenShot/issues/3)
 - Entire screen with multiple RecyclerViews and ListViews in the screen, each scrolling vertically(https://github.com/xtone/AndroidAutoScreenShot/issues/4)
 - Screen where ads exist at the bottom of WebView(https://github.com/xtone/AndroidAutoScreenShot/issues/5)
+- Screen with RecyclerView set up under certain conditions(https://github.com/xtone/AndroidAutoScreenShot/issues/11)
 
 ### Compose
 - Screens that specify paddingTop or paddingBottom in the layout itself(https://github.com/xtone/AndroidAutoScreenShot/issues/6)
@@ -300,8 +301,4 @@ Screenshots cannot be obtained in the following cases:
 - Do not run the library at the same time.
 - Specify appropriate argument values for each method.
 - Write in the appropriate file location to run the library in the state of the UI of the screen you want to take a screenshot of.
-<<<<<<< HEAD
 - Call the method of the library corresponding to the corresponding View or Composable.
-=======
-- Call the method of the library corresponding to the corresponding View or Composable.
->>>>>>> f37653f53074ca1b2aef872ba589ac154b7bb71a
