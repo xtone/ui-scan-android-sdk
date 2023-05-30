@@ -1,0 +1,174 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.xtone.android",
+    "module": "AndroidAutoScreenShot",
+    "version": "0.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "2.9.0"
+          }
+        },
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "converter-gson",
+          "version": {
+            "requires": "2.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.6.4"
+          }
+        },
+        {
+          "group": "com.slack.eithernet",
+          "module": "eithernet",
+          "version": {
+            "requires": "1.3.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "AndroidAutoScreenShot-0.1.2.aar",
+          "url": "AndroidAutoScreenShot-0.1.2.aar",
+          "size": 198782,
+          "sha512": "b081b2dd8f6b1688f8324e1b7b13504866a6fe24342901674deafd381c2bb8dda90e96a0c7fd322b76f2a81bae5072654e35d62a907ba2b79d76ad5371cb8e6f",
+          "sha256": "f76483930d8e44515acf6abbe70738672a3c5e781d8e9cdcb561e6c6624c0eee",
+          "sha1": "2844ef9765f9f2c3392da3ac43d02cdb13b5ddbb",
+          "md5": "1988ac2113e5484ed56c4c4b17a9f5a0"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-parcelize-runtime",
+          "version": {
+            "requires": "1.8.10"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.7.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.4.1"
+          }
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.test",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.4.3"
+          }
+        },
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "2.9.0"
+          }
+        },
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "converter-gson",
+          "version": {
+            "requires": "2.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.6.4"
+          }
+        },
+        {
+          "group": "com.slack.eithernet",
+          "module": "eithernet",
+          "version": {
+            "requires": "1.3.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "AndroidAutoScreenShot-0.1.2.aar",
+          "url": "AndroidAutoScreenShot-0.1.2.aar",
+          "size": 198782,
+          "sha512": "b081b2dd8f6b1688f8324e1b7b13504866a6fe24342901674deafd381c2bb8dda90e96a0c7fd322b76f2a81bae5072654e35d62a907ba2b79d76ad5371cb8e6f",
+          "sha256": "f76483930d8e44515acf6abbe70738672a3c5e781d8e9cdcb561e6c6624c0eee",
+          "sha1": "2844ef9765f9f2c3392da3ac43d02cdb13b5ddbb",
+          "md5": "1988ac2113e5484ed56c4c4b17a9f5a0"
+        }
+      ]
+    }
+  ]
+}
