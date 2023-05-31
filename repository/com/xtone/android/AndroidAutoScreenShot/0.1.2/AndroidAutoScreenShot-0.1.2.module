@@ -63,11 +63,11 @@
         {
           "name": "AndroidAutoScreenShot-0.1.2.aar",
           "url": "AndroidAutoScreenShot-0.1.2.aar",
-          "size": 198782,
-          "sha512": "b081b2dd8f6b1688f8324e1b7b13504866a6fe24342901674deafd381c2bb8dda90e96a0c7fd322b76f2a81bae5072654e35d62a907ba2b79d76ad5371cb8e6f",
-          "sha256": "f76483930d8e44515acf6abbe70738672a3c5e781d8e9cdcb561e6c6624c0eee",
-          "sha1": "2844ef9765f9f2c3392da3ac43d02cdb13b5ddbb",
-          "md5": "1988ac2113e5484ed56c4c4b17a9f5a0"
+          "size": 198775,
+          "sha512": "05b7c52479752d143dba36d9b7e741557ec6e5216702b070141f1f76b7c6befcc907e8a98ebce019e8c908b005d4cbdba9b7165fc952b4e0a55e38bc54f6b1e4",
+          "sha256": "298e4881b4162ca227dd496e7c371b047584e5a30042d90dbf8b0af47f44c957",
+          "sha1": "41724dd988866350db903801d63788824fbf7849",
+          "md5": "8826d9263a142ed83b8bf92ce0cc9580"
         }
       ]
     },
@@ -162,11 +162,11 @@
         {
           "name": "AndroidAutoScreenShot-0.1.2.aar",
           "url": "AndroidAutoScreenShot-0.1.2.aar",
-          "size": 198782,
-          "sha512": "b081b2dd8f6b1688f8324e1b7b13504866a6fe24342901674deafd381c2bb8dda90e96a0c7fd322b76f2a81bae5072654e35d62a907ba2b79d76ad5371cb8e6f",
-          "sha256": "f76483930d8e44515acf6abbe70738672a3c5e781d8e9cdcb561e6c6624c0eee",
-          "sha1": "2844ef9765f9f2c3392da3ac43d02cdb13b5ddbb",
-          "md5": "1988ac2113e5484ed56c4c4b17a9f5a0"
+          "size": 198775,
+          "sha512": "05b7c52479752d143dba36d9b7e741557ec6e5216702b070141f1f76b7c6befcc907e8a98ebce019e8c908b005d4cbdba9b7165fc952b4e0a55e38bc54f6b1e4",
+          "sha256": "298e4881b4162ca227dd496e7c371b047584e5a30042d90dbf8b0af47f44c957",
+          "sha1": "41724dd988866350db903801d63788824fbf7849",
+          "md5": "8826d9263a142ed83b8bf92ce0cc9580"
         }
       ]
     }
