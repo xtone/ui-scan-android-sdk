@@ -31,7 +31,7 @@ allprojects {
 
 ```Groovy
 dependencies {
-	implementation 'com.xtone.android:AndroidAutoScreenShot:0.1.3' //New
+	implementation 'com.xtone.android:AndroidAutoScreenShot:0.2.0' //New
 }　
 ```
 
