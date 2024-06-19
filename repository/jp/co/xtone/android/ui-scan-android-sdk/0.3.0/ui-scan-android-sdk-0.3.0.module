@@ -2,7 +2,7 @@
   "formatVersion": "1.1",
   "component": {
     "group": "jp.co.xtone.android",
-    "module": "AndroidAutoScreenShot",
+    "module": "ui-scan-android-sdk",
     "version": "0.3.0",
     "attributes": {
       "org.gradle.status": "release"
@@ -61,13 +61,13 @@
       ],
       "files": [
         {
-          "name": "AndroidAutoScreenShot-0.3.0.aar",
-          "url": "AndroidAutoScreenShot-0.3.0.aar",
-          "size": 194497,
-          "sha512": "6f404cb6516c4cc7f2359e6e49e43825eec59f58c2ba5e0060ef48542f43aeecebd6007148ee687adadcd43cc781d00d6fe80aad86be2fdfb7dfae23b753539a",
-          "sha256": "784fea6a8332dc9e4dceb18741f2cbe31570750b661122f664233c66000abe0f",
-          "sha1": "8e9afb8bf0b919c67d7d30fde5d837f97eacb1f1",
-          "md5": "d99705fa0448e5c389106050fb261f08"
+          "name": "ui-scan-android-sdk-0.3.0.aar",
+          "url": "ui-scan-android-sdk-0.3.0.aar",
+          "size": 194499,
+          "sha512": "dd5abd057e478fb1737888150f009b17ec684be0cc1b248f28a4680af2d96397a2307fd1f6027a9283b19d260fe5dd821943ea01d7f5e8f70e2f357e26a0e4af",
+          "sha256": "4d8eeca61e2e1f67d332e4aa3caf567b46527b63475b67459c7eccbc3f57ce22",
+          "sha1": "6d2f48c1479285d2b766a7946cd8599cf0d17b7d",
+          "md5": "7bc047288df94a47ff7a9bdf5ad74a5b"
         }
       ]
     },
@@ -160,13 +160,13 @@
       ],
       "files": [
         {
-          "name": "AndroidAutoScreenShot-0.3.0.aar",
-          "url": "AndroidAutoScreenShot-0.3.0.aar",
-          "size": 194497,
-          "sha512": "6f404cb6516c4cc7f2359e6e49e43825eec59f58c2ba5e0060ef48542f43aeecebd6007148ee687adadcd43cc781d00d6fe80aad86be2fdfb7dfae23b753539a",
-          "sha256": "784fea6a8332dc9e4dceb18741f2cbe31570750b661122f664233c66000abe0f",
-          "sha1": "8e9afb8bf0b919c67d7d30fde5d837f97eacb1f1",
-          "md5": "d99705fa0448e5c389106050fb261f08"
+          "name": "ui-scan-android-sdk-0.3.0.aar",
+          "url": "ui-scan-android-sdk-0.3.0.aar",
+          "size": 194499,
+          "sha512": "dd5abd057e478fb1737888150f009b17ec684be0cc1b248f28a4680af2d96397a2307fd1f6027a9283b19d260fe5dd821943ea01d7f5e8f70e2f357e26a0e4af",
+          "sha256": "4d8eeca61e2e1f67d332e4aa3caf567b46527b63475b67459c7eccbc3f57ce22",
+          "sha1": "6d2f48c1479285d2b766a7946cd8599cf0d17b7d",
+          "md5": "7bc047288df94a47ff7a9bdf5ad74a5b"
         }
       ]
     }
