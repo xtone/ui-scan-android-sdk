@@ -2,11 +2,11 @@
 
 ### Common
 
-The following is a description of each method at the time of instance creation.
+The following is a description of each argument during the initialization process.
 
-- `apiKey(String)`: set your API key obtained from the web page.
-- `projectId(String)`: Set your project ID.
-- `shouldSaveImageLocally(Boolean)`: set whether images should be saved locally (default is false)
+- `apiKey: String`: set your API key obtained from the web page.
+- `projectId: String`: Set your project ID.
+- `shouldSaveImageLocally: Boolean`: set whether images should be saved locally (default is false)
 
 ### For XML
 

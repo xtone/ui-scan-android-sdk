@@ -1,14 +1,14 @@
-# AndroidAutoScreenShot
+# UI SCAN SDK for Android
 
-"AndroidAutoScreenShot" is a library for semi-automatically creating and simultaneously sending screenshots of your app to the XXX service
+"UI SCAN SDK" is a library for semi-automatically creating and simultaneously sending screenshots of your app to the UI SCAN service
 
 ## Features
 - Semi Automatically take screenshots of your app
 - Full Screen screenshots contains scroll of your app
-- Automatically Upload screenshot to XXX
+- Automatically Upload screenshot to UI SCAN
 
 ## Requirements
-- Android 8+
+- minSDK 26+
 - Java 8+
 - Kotlin Project
 
@@ -29,15 +29,38 @@ allprojects {
 
 2. Add the following line to your `app/build.gradle` file:
 
+In a multi-module configuration, the following dependencies should also be defined for modules that use the library
+
 ```Groovy
 dependencies {
-	implementation 'com.xtone.android:AndroidAutoScreenShot:0.2.0' //New
-}　
+	implementation 'jp.co.xtone.android:AndroidAutoScreenShot:0.3.0' //New
+}
 ```
 
 ## Usage
 
-Below is a simple sample code for taking a screenshot. [Please check the Usage for more details.](https://github.com/xtone/AndroidAutoScreenShot/blob/main/Documents/Usage.md)
+[Please check the Usage for more details.](https://github.com/xtone/AndroidAutoScreenShot/blob/main/Documents/Usage.md)
+
+### initialization
+
+```kotlin
+class MyApp : Application() {
+
+    override fun onCreate() {
+
+        // Initialize the whole
+        AutoCaptureInitializer.initialize(
+            apiKey = "your api key",
+            projectId = "your project id", 
+            shouldSaveImageLocally = true
+        )
+    }
+}
+```
+
+### taking a screenshot
+
+Below is a simple sample code for taking a screenshot.
 
 ```kotlin
 import com.xtone.android.autoscreenshot.AutoCapture
@@ -49,11 +72,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //create and initialize an instance
-        val auto = AutoCapture.Builder(activity)
-            .apiKey("your api key")
-            .projectId("your project id")
-            .shouldSaveImageLocally(true)
-            .build()
+        val auto = AutoCapture.build(activity)
 
         //execute screenshot
         auto.captureStart()
@@ -91,3 +110,4 @@ Screenshots cannot be obtained in the following cases:
 - Screens where the layout is directly below in the content property of the Scaffold function(https://github.com/xtone/AndroidAutoScreenShot/issues/7)
 - Screen with Arrangement.spacedBy() specified for layout(https://github.com/xtone/AndroidAutoScreenShot/issues/8)
 - Screen where contentPadding is specified in the relevant layout that allows vertical scrolling(https://github.com/xtone/AndroidAutoScreenShot/issues/12)
+- Screen where initialization of lists to be passed to LazyColumn, LazyRow, etc. is not completely finished(https://github.com/xtone/AndroidAutoScreenShot/issues/13)

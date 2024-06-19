@@ -15,11 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //create and initialize an instance
-        val auto = AutoCapture.Builder(activity)
-            .apiKey("your api key")
-            .projectId("your project id")
-            .shouldSaveImageLocally(true)
-            .build()
+        val auto = AutoCapture.build(activity)
 
         //execute screenshot
         auto.captureStart()
@@ -40,12 +36,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //create an instance and initialize
-        val auto = AutoCapture.Builder(activity)
-            .apiKey("your api key")
-            .projectId("your project id")
-            .shouldSaveImageLocally(true)
-            .build()
+        //create and initialize an instance
+        val auto = AutoCapture.build(activity)
 
         //execute screenshot
         auto.captureStartScrollView(
@@ -73,18 +65,17 @@ import com.xtone.android.autoscreenshot.AutoCaptureCompose
 fun YourRootComposable() {
 
     //create an instance and initialize
-    val activity = LocalContext.current as Activity
+    val context = LocalContext.current
+    val activity = context.getActivity()
     val auto = remember {
-        AutoCaptureCompose.Builder(activity)
-            .apiKey("your api key")
-            .projectId("your project id")
-            .shouldSaveImageLocally(true)
-            .build()
+        activity?.let {
+            AutoCaptureCompose.build(activity)
+        }
     }
 
     LaunchedEffect(Unit) {
         //execute screenshot
-        auto.captureStart()
+        auto?.captureStart()
     }
 
     Box(contentAlignment = Alignment.Center) {
@@ -104,16 +95,14 @@ import com.xtone.android.autoscreenshot.AutoCaptureCompose
 @Composable
 fun YourLazyColumnComposable() {
 
-    val activity = LocalContext.current as Activity
+    // create an instance and initialize
+    val context = LocalContext.current
+    val activity = context.getActivity()
     val scrollState = rememberLazyListState()
-
-    //create an instance and initialize
     val auto = remember {
-        AutoCaptureCompose.Builder(activity)
-            .apiKey("your api key")
-            .projectId("your project id")
-            .shouldSaveImageLocally(true)
-            .build()
+        activity?.let {
+            AutoCaptureCompose.build(activity)
+        }
     }
 
     Scaffold(
@@ -143,6 +132,8 @@ fun YourLazyColumnComposable() {
         })
 }
 ```
+
+Use `getActivity()` to get Activity in Compose.
 
 ### XML & Compose Mix
 #### no scroll
@@ -180,7 +171,6 @@ val composeView = ComposeView(this).apply {
 (2) When a scrolling UI element is placed in an existing View in a Composable function
 
 ```kotlin
-val activity = LocalContext.current as Activity
 AndroidView(
     factory = { context ->
         val scrollView = ScrollView(context)
