@@ -63,7 +63,7 @@ class MyApp : Application() {
 Below is a simple sample code for taking a screenshot.
 
 ```kotlin
-import com.xtone.android.autoscreenshot.AutoCapture
+import jp.co.xtone.android.autoscreenshot.AutoCapture
 
 class MainActivity : AppCompatActivity() {
 
