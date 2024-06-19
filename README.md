@@ -22,7 +22,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url 'https://raw.githubusercontent.com/xtone/AndroidAutoScreenShot/main/repository/' } //New
+        maven { url 'https://raw.githubusercontent.com/xtone/ui-scan-android-sdk/main/repository/' } //New
     }
 }
 ```
@@ -33,7 +33,7 @@ In a multi-module configuration, the following dependencies should also be defin
 
 ```Groovy
 dependencies {
-	implementation 'jp.co.xtone.android:AndroidAutoScreenShot:0.3.0' //New
+	implementation 'jp.co.xtone.android:ui-scan-android-sdk:0.3.0' //New
 }
 ```
 
